@@ -14,6 +14,8 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
+
+
   // Creating a prompt to determine password length
   passBool = false;
   while(passBool == false) {
@@ -30,6 +32,7 @@ function generatePassword() {
       passBool = true;
     }
   }
+
 
   // Creating a prompt to determine lowercase characters
   lowerBool = false;
@@ -48,6 +51,7 @@ function generatePassword() {
     }
   }
 
+
   // Creating a prompt to determine uppercase characters
   upperBool = false;
   while(upperBool == false) {
@@ -64,6 +68,25 @@ function generatePassword() {
       alert("The input value dosen't follow the instructions." + "\nPlease enter either 'y' or 'n'.");
     }
   }
+
+
+  // Creating a prompt to determine numeric characters
+  numBool = false;
+  while(numBool == false) {
+    var numInt = prompt("Do you want to include numeric integers." + "\nPlease enter either 'y' for yes, or 'n' for no.");
+    // Checking if user clicked the cancel button
+    if(numInt == null) {
+      return;
+    }
+    // Checking if user did not follow specified instructions
+    else if(numInt == 'y' || numInt == 'n') {
+      numBool = true;
+    }
+    else {
+      alert("The input value dosen't follow the instructions." + "\nPlease enter either 'y' or 'n'.");
+    }
+  }
+
 
   // Creating a prompt to determine uppercase characters
   specBool = false;
@@ -82,54 +105,63 @@ function generatePassword() {
     }
   }
 
+
+  // Array of all possible lowercase letters
   var listLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   // Array of all possible uppercase letters
   var listUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  // Array of all possible single-digit integers
+  var listNumInt = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   // Array of all possible special characters
   var listSpecChars = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
-
   // Initial password array
   var passwordChoices = [];
 
-  // Pushing user choics in password array to generate new password
-  // If all three character choices are yes
-  if(lowercase == 'y' && uppercase == 'y' && specChars == 'y') {
-    var concatLU = listLowercase.concat(listUppercase);
-    passwordChoices = concatLU.concat(listSpecChars);
+  // Creating switch statements to determine character selection array
+  // Appending lowercase response
+  switch(lowercase) {
+    case 'y':
+      passwordChoices = passwordChoices.concat(listLowercase);
+      break;
+    case 'n':
+      break;
   }
-  // If lowercase is no and the rest are yes
-  else if(!(lowercase == 'y') && uppercase == 'y' && specChars == 'y') {
-    passwordChoices = listUppercase.concat(listSpecChars);
+  // Appending uppercase response
+  switch(uppercase) {
+    case 'y':
+      passwordChoices = passwordChoices.concat(listUppercase);
+      break;
+    case 'n':
+      break;
   }
-  // If uppercase is no and the rest are yes
-  else if(lowercase == 'y' && !(uppercase == 'y') && specChars == 'y') {
-    passwordChoices = listLowercase.concat(listSpecChars);
+  // Appending numInt response
+  switch(numInt) {
+    case 'y':
+      passwordChoices = passwordChoices.concat(listNumInt);
+      break;
+    case 'n':
+      break;
   }
-  // If specChars is no and the rest are yes
-  else if(lowercase == 'y' && uppercase == 'y' && !(specChars == 'y')) {
-    passwordChoices = listLowercase.concat(listUppercase);
-  }
-  // If only lowercase is yes
-  else if(lowercase == 'y' && !(uppercase == 'y') && !(specChars == 'y')) {
-    passwordChoices = passwordChoices.concat(listLowercase);
-  }
-  // If only uppercase is yes
-  else if(!(lowercase) == 'y' && uppercase == 'y' && !(specChars == 'y')) {
-    passwordChoices = passwordChoices.concat(listUppercase);
-  }
-  // If only specChars is yes
-  else if(lowercase == 'y' && !(uppercase == 'y') && specChars == 'y') {
-    passwordChoices = passwordChoices.concat(listSpecChars);
+  // Appending specChars response
+  switch(specChars) {
+    case 'y':
+      passwordChoices = passwordChoices.concat(listSpecChars);
+      break;
+    case 'n':
+      break;
   }
 
+  // Declaring variables for final generation
   var randChar;
   var finalPWD = ""; 
 
+  // Loop to randomly select characters and concat them
   for(var i = 0; i < passLength; i++) {
     randChar = passwordChoices[Math.floor(Math.random() * passwordChoices.length)];
     finalPWD += randChar;
   }
-
+  
+  // Displaying generated password
   alert("The generated password is: " + finalPWD);
 }
 
