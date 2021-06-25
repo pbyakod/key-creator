@@ -129,5 +129,7 @@ function generatePassword() {
     randChar = passwordChoices[Math.floor(Math.random() * passwordChoices.length)];
     finalPWD += randChar;
   }
+
+  alert("The generated password is: " + finalPWD);
 }
 
