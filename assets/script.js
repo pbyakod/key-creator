@@ -82,24 +82,51 @@ function generatePassword() {
     }
   }
 
-  // Array of all possible lowercase letters
-  var listLowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  var listLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   // Array of all possible uppercase letters
-  var listUppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  var listUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   // Array of all possible special characters
-  var listSpecChars = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
+  var listSpecChars = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
 
-  // Initial Password Array
+  // Initial password array
   var passwordChoices = [];
 
+  // Declaring concat variable
+  var concatPC = '';
+
   // Pushing user choics in password array to generate new password
-  if(lowercase == 'y') {
-    passwordChoices.push("lowercase");
+  // If all three character choices are yes
+  if(lowercase == 'y' && uppercase == 'y' && specChars == 'y') {
+    var concatLU = listLowercase.concat(listUppercase);
+    var concatLUS = concatLU.concat(listSpecChars);
+    concatPC = concatLUS;
   }
-  if(uppercase == 'y') {
-    passwordChoices.push("uppercase");
+  // If lowercase is no and the rest are yes
+  else if(!(lowercase == 'y') && uppercase == 'y' && specChars == 'y') {
+    var concatUS = listUppercase.concat(listSpecChars);
+    concatPC = concatUS;
   }
-  if(specChars == 'y') {
-    passwordChoices.push("specialCharacters");
+  // If uppercase is no and the rest are yes
+  else if(lowercase == 'y' && !(uppercase == 'y') && specChars == 'y') {
+    var concatLS = listLowercase.concat(listSpecChars);
+    concatPC = concatLS;
+  }
+  // If specChars is no and the rest are yes
+  else if(lowercase == 'y' && uppercase == 'y' && !(specChars == 'y')) {
+    concatLU = listLowercase.concat(listUppercase);
+    concatPC = concatLU;
+  }
+  // If only lowercase is yes
+  else if(lowercase == 'y' && !(uppercase == 'y') && !(specChars == 'y')) {
+    concatPC = passwordChoices.concat(listLowercase);
+  }
+  // If only uppercase is yes
+  else if(!(lowercase) == 'y' && uppercase == 'y' && !(specChars == 'y')) {
+    concatPC = passwordChoices.concat(listUppercase);
+  }
+  // If only specChars is yes
+  else if(lowercase == 'y' && !(uppercase == 'y') && specChars == 'y') {
+    concatPC = passwordChoices.concat(listSpecChars);
   }
 }
+
