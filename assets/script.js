@@ -91,42 +91,43 @@ function generatePassword() {
   // Initial password array
   var passwordChoices = [];
 
-  // Declaring concat variable
-  var concatPC = '';
-
   // Pushing user choics in password array to generate new password
   // If all three character choices are yes
   if(lowercase == 'y' && uppercase == 'y' && specChars == 'y') {
     var concatLU = listLowercase.concat(listUppercase);
-    var concatLUS = concatLU.concat(listSpecChars);
-    concatPC = concatLUS;
+    passwordChoices = concatLU.concat(listSpecChars);
   }
   // If lowercase is no and the rest are yes
   else if(!(lowercase == 'y') && uppercase == 'y' && specChars == 'y') {
-    var concatUS = listUppercase.concat(listSpecChars);
-    concatPC = concatUS;
+    passwordChoices = listUppercase.concat(listSpecChars);
   }
   // If uppercase is no and the rest are yes
   else if(lowercase == 'y' && !(uppercase == 'y') && specChars == 'y') {
-    var concatLS = listLowercase.concat(listSpecChars);
-    concatPC = concatLS;
+    passwordChoices = listLowercase.concat(listSpecChars);
   }
   // If specChars is no and the rest are yes
   else if(lowercase == 'y' && uppercase == 'y' && !(specChars == 'y')) {
-    concatLU = listLowercase.concat(listUppercase);
-    concatPC = concatLU;
+    passwordChoices = listLowercase.concat(listUppercase);
   }
   // If only lowercase is yes
   else if(lowercase == 'y' && !(uppercase == 'y') && !(specChars == 'y')) {
-    concatPC = passwordChoices.concat(listLowercase);
+    passwordChoices = passwordChoices.concat(listLowercase);
   }
   // If only uppercase is yes
   else if(!(lowercase) == 'y' && uppercase == 'y' && !(specChars == 'y')) {
-    concatPC = passwordChoices.concat(listUppercase);
+    passwordChoices = passwordChoices.concat(listUppercase);
   }
   // If only specChars is yes
   else if(lowercase == 'y' && !(uppercase == 'y') && specChars == 'y') {
-    concatPC = passwordChoices.concat(listSpecChars);
+    passwordChoices = passwordChoices.concat(listSpecChars);
+  }
+
+  var randChar;
+  var finalPWD = ""; 
+
+  for(var i = 0; i < passLength; i++) {
+    randChar = passwordChoices[Math.floor(Math.random() * passwordChoices.length)];
+    finalPWD += randChar;
   }
 }
 
