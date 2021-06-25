@@ -34,13 +34,13 @@ function generatePassword() {
   // Creating a prompt to determine lowercase characters
   lowerBool = false;
   while(lowerBool == false) {
-    var lowerLength = prompt("Do you want to include lowercase characters." + "\nPlease enter either 'y' for yes, or 'n' for no.");
+    var lowercase = prompt("Do you want to include lowercase characters." + "\nPlease enter either 'y' for yes, or 'n' for no.");
     // Checking if user clicked the cancel button
-    if(lowerLength == null) {
+    if(lowercase == null) {
       return;
     }
     // Checking if user did not follow specified instructions
-    else if(lowerLength == 'y' || lowerLength == 'n') {
+    else if(lowercase == 'y' || lowercase == 'n') {
       lowerBool = true;
     }
     else {
@@ -51,13 +51,13 @@ function generatePassword() {
   // Creating a prompt to determine uppercase characters
   upperBool = false;
   while(upperBool == false) {
-    var upperLength = prompt("Do you want to include uppercase characters." + "\nPlease enter either 'y' for yes, or 'n' for no.");
+    var uppercase = prompt("Do you want to include uppercase characters." + "\nPlease enter either 'y' for yes, or 'n' for no.");
     // Checking if user clicked the cancel button
-    if(upperLength == null) {
+    if(uppercase == null) {
       return;
     }
     // Checking if user did not follow specified instructions
-    else if(upperLength == 'y' || upperLength == 'n') {
+    else if(uppercase == 'y' || uppercase == 'n') {
       upperBool = true;
     }
     else {
@@ -82,9 +82,24 @@ function generatePassword() {
     }
   }
 
-  // Organizing required characters
+  // Array of all possible lowercase letters
   var listLowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  // Array of all possible uppercase letters
   var listUppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  // Array of all possible special characters
   var listSpecChars = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
 
+  // Initial Password Array
+  var passwordChoices = [];
+
+  // Pushing user choics in password array to generate new password
+  if(lowercase == 'y') {
+    passwordChoices.push("lowercase");
+  }
+  if(uppercase == 'y') {
+    passwordChoices.push("uppercase");
+  }
+  if(specChars == 'y') {
+    passwordChoices.push("specialCharacters");
+  }
 }
