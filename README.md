@@ -1,5 +1,9 @@
 ## Key Creator
 
+### Deployed Link 
+
+[Live URL](https://pbyakod.github.io/key-creator/)
+
 ### Short Description
 This project develops a webpage designed to generate random passwords, so you dont have to yourself! The password generator creats a string of characters based on various specifications that the user inputs themself, making it unique to every individual. A significant reason for developing this program is because I've never been good at creating unique passwords that are easy to remember before. By using this password generator, I can generate a never-before-seen code which can be easy to remember, sice I inputted my required specifications for the password beforehand. 
 
@@ -19,3 +23,9 @@ The next step was to compile all of the user request into one constant, so that 
 #### 3. Generating Password
 
 The final step was to create the password, using the array of possible characters. This was done by iterating from 0 to the specified length. Under each iteration, a random number would be generated using the built in Math.random() and Math.floor functions. After the number is selected, the loop maps that number to the index of the character array, and selects the corresponding character. Once the character is selected, the program concats the character to the password string - generating a set of chars known as the password. 
+
+### License 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
